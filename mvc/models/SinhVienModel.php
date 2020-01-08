@@ -1,7 +1,14 @@
 <?php 
-class SinhVienModel{
+class SinhVienModel extends DB{
 	public function getSV(){
-		return "Huy";
+		$sql = "SELECT * FROM item";
+		$data = mysqli_query($this->conn,$sql);
+		$arr = array();
+		while($row = mysqli_fetch_assoc($data)){
+			$arr[] = $row;
+		}
+		return json_encode($arr);
+		
 	}
 	public function insert(){
 
