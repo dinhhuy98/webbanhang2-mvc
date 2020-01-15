@@ -5,7 +5,7 @@
         <div class="bg-light py-4 mb-4">
           <div class="row mx-4 my-4 product-item-2 align-items-start">
             <div class="col-md-6 mb-5 mb-md-0">
-              <img src="./public/images/model_1_bg.jpg" alt="Image" class="img-fluid">
+              <img src="./public/images/<?php echo $item->image; ?>" alt="Image" class="img-fluid">
             </div>
            
             <div class="col-md-5 ml-auto product-title-wrap">
@@ -16,7 +16,7 @@
               
               <div class="mb-4"> 
                 <h3 class="text-black font-weight-bold h5">Giá:</h3>
-                <div class="price text-warning"><?php echo $item->cost; ?>VND</div>
+                <div class="price text-warning"><?php echo number_format($item->price,0," ","."); ?>VND</div>
               </div>
               <p>
                 <a href="#" class="btn btn-black btn-outline-black rounded-0 d-block mb-2 mb-lg-0 d-lg-inline-block">Thêm giỏ hàng</a>

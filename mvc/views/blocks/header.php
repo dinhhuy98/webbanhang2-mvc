@@ -1,3 +1,26 @@
+   <?php $arrCat = $data['category'];
+      
+      function showCategory($arr,$k){
+        foreach($arr as $key=>$item){
+         if($item['parent_id']==$k){
+          if($k==0){
+            echo '<div class="col-sm text-uppercase">
+   <a class="dropdown-item nav-link" href="product/category/'.$item['link'].'"><b>'.$item['name'].'</b></a>
+   <div class="dropdown-divider"></div>';
+          }
+          else
+            echo '<a class="dropdown-item text-uppercase nav-link" href="product/category/'.$item['link'].'">'.$item['name'].'</a>';
+            unset($arr[$key]);
+            showCategory($arr,$item['id']);
+            if($k==0)
+              echo '</div>';
+      }
+    }
+    
+     
+  }
+  
+    ?>
    <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -42,12 +65,25 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#home-section" class="nav-link">Trang Chủ</a></li>
-                <li><a href="#products-section" class="nav-link">Sản Phẩm</a></li>
+                <li><a href="home" class="nav-link">Trang Chủ</a></li>
+                <li  class="nav-item dropdown">
+                  
+    <a  class="  nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+      Sản Phẩm
+    </a>
+    <div class="dropdown-menu" style="width:800px;" aria-labelledby="navbarDropdown">
+    <div class="row">
+      <?php showCategory($arrCat,0); ?>
+  </div>
+</div>
+
+
+
+                </li>
                 <li><a href="#about-section" class="nav-link">Giới Thiệu</a></li>
                 <li><a href="#special-section" class="nav-link">Khuyến Mãi</a></li>
-                <li><a href="#blog-section" class="nav-link">Tin tức</a></li>
-                <li><a href="#contact-section" class="nav-link">Liên Hệ</a></li>
+                <li><a href="news" class="nav-link">Tin tức</a></li>
+                <li><a href="contract" class="nav-link">Liên Hệ</a></li>
                 <li><div class="d-flex mb-4">
               <input type="text" class="form-control rounded-0" placeholder="Tên sản phẩm">
               <input type="submit" class="btn btn-black btn-outline-black rounded-0" value="Tìm kiếm">
