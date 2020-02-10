@@ -84,17 +84,39 @@
                 <li><a href="#special-section" class="nav-link">Khuyến Mãi</a></li>
                 <li><a href="news" class="nav-link">Tin tức</a></li>
                 <li><a href="contract" class="nav-link">Liên Hệ</a></li>
-                <li><div class="d-flex mb-4">
-              <input type="text" class="form-control rounded-0" placeholder="Tên sản phẩm">
-              <input type="submit" class="btn btn-black btn-outline-black rounded-0" value="Tìm kiếm">
-            </div></li>
+                <li style="height:40px"><form class="d-flex mb-4" method="GET" action="product/search">
+              <input type="text" class="form-control rounded-0" placeholder="Tên sản phẩm" name="key">
+              <button type="submit" class="btn btn-black btn-outline-black rounded-0" value=1>Tìm kiếm</button>
+            </form></li>
+            <!-- Login and cart -->
+            <?php 
+              if(isset($_SESSION['user'])){
+             ?>
+             <li><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span class="icon-user mr-2" style="position: relative; top: 2px;"></span><span class="d-none d-lg-inline-block text-black"></span><?php echo $_SESSION['hoten'];?></a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width:200px;">
+                <a class="dropdown-item" href="#">Chỉnh sửa thông tin</a>
+                <a class="dropdown-item" href="logout">Đăng xuất</a>
+              </div>
+             </li>
+              <?php 
+                }
+                else{
+               ?>
+               <li><a href="#" class="nav-link btnLogin1"><span class="icon-user mr-2" style="position: relative; top: 2px;"></span><span class="d-none d-lg-inline-block text-black"></span>Đăng nhập</a></li>
+               <?php 
+                }
+                ?>
+             <li><a href="#" class="nav-link"><span class="icon-shopping-cart mr-2 cart" style="position: relative; top: 2px;font-size:20px;" data-count="0"></span><span class="d-none d-lg-inline-block text-black"></span></a></li>
               </ul>
+
             </nav>
           </div>
 <!-- 	<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a> -->
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
-
+    
         </div>
       </div>
     </header>
+    <div id="loginform">
+  </div>
+    </div>
+ 

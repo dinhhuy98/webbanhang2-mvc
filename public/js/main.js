@@ -247,5 +247,101 @@ jQuery(document).ready(function($) {
 
   };
   siteScroll();
+ 
+  $(document).on('click','.page-item-ajax',function(){
+  	var page_ = $(this).attr("page");
+  	var key_ = $("#key").text();
+  	$.get("./Product/searchAjax", {key:key_,page:page_},function(data){
+  		$("#content").html(data);
+  		$(window).scrollTop(0);
+  	});
+  });
+
+   $('.btnLogin1').click(function() {
+   		$.get("./Login",{},function(data){
+   			$('#loginform').html(data);
+   		});
+  		$('#loginform').css({
+  			display: 'block'
+  		});
+  });
+  $(document).on('click','.close',function(){
+  	$('#loginform').css({
+  		display: 'none'
+  	});
+  });
+  $("#hoten").blur(function() {
+ 		var _hoten = $(this).val();
+ 		$.post('Ajax/checkFullName', {hoten: _hoten}, function(data) {
+ 			if(data=='1')
+ 				$('#hoten-error').html('Vui lòng nhập họ tên');
+ 			else
+ 				$('#hoten-error').html('');
+ 		});
+  });
+  $("#email").blur(function() {
+ 		var _email = $(this).val();
+ 		$.post('Ajax/checkEmail', {email: _email}, function(data) {
+ 			if(data=='1')
+ 				$('#email-error').html('Vui lòng nhập email');
+ 			else if(data=='2')
+ 				$('#email-error').html('Email không hợp lệ');
+ 			else
+ 				$('#email-error').html('');
+
+ 		});
+  });
+
+  $("#phone").blur(function() {
+ 		var _phone = $(this).val();
+ 		$.post('Ajax/checkPhoneNumber', {phone: _phone}, function(data) {
+ 			if(data=='1')
+ 				$('#phone-error').html('Vui lòng nhập số điện thoại');
+ 			else if(data=='2')
+ 				$('#phone-error').html('Số điện thoại không hợp lệ');
+ 			else
+ 				$('#phone-error').html('');
+
+ 		});
+  });
+
+  $("#username").blur(function() {
+ 		var _username = $(this).val();
+ 		$.post('Ajax/checkUsername', {username: _username}, function(data) {
+ 			if(data=='1')
+ 				$('#username-error').html('Vui lòng nhập username');
+ 			else if(data=='2')
+ 				$('#username-error').html('Username đã tồn tại');
+ 			else
+ 				$('#username-error').html('');
+
+ 		});
+  });
+
+  $("#password").blur(function() {
+ 		var _password = $(this).val();
+ 		$.post('Ajax/checkPassword', {password: _password}, function(data) {
+ 			if(data=='1')
+ 				$('#password-error').html('Vui lòng nhập password');
+ 			else
+ 				$('#password-error').html('');
+
+ 		});
+  });
+
+
+  $(document).on('click','input[name="btnLogin"]',function(){
+  		var _username = $("input[name='username']").val();
+  		var _password = $("input[name='password']").val();
+  		$.post("./Login/login",{username:_username,password:_password,btnLogin:1},function(data){
+  			if(data=='1'){
+  				window.location.href="http://localhost:8080/webbanhang2";
+  			}
+  			else
+  				$('#error').css({
+  					display: 'inline'
+  				});
+  		});
+  });
 
 });

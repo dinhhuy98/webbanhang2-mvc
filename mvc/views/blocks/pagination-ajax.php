@@ -5,21 +5,21 @@
 <nav aria-label="..." >
   <ul class="pagination justify-content-center">
     <li class="page-item <?php echo $currentPage==1?'disabled':'' ?>">
-      <a class="page-link" href="<?php echo $data['link_page'].($currentPage-1);?>" tabindex="-1">Trang trước</a>
+      <button class="page-link page-item-ajax" href="" tabindex="-1" page="<?php echo $currentPage-1; ?>">Trang trước</button>
     </li>
     <?php 
         for($i=1;$i<=$numberPage;$i++){
           if($i==$currentPage){
-            echo '<li class="page-item active">
-                    <a class="page-link" href="'.$data['link_page'].$i.'">'.$i.'</a>
+            echo '<li class="page-item active ">
+                    <button class="page-link page-item-ajax" page="'.$i.'">'.$i.'</button>
                   </li>';
           }
           else
-            echo '<li class="page-item"><a class="page-link" href="'.$data['link_page'].$i.'">'.$i.'</a></li>';
+            echo '<li class="page-item "><button class="page-link page-item-ajax" page="'.$i.'">'.$i.'</button></li>';
         }
      ?>
     <li class="page-item <?php echo $currentPage==$numberPage?'disabled':'' ?>">
-      <a class="page-link" href="<?php echo $data['link_page'].($currentPage+1);?>">Trang sau</a>
+      <button class="page-link page-item-ajax" page="<?php echo $currentPage+1; ?>">Trang sau</button>
     </li>
   </ul>
 </nav>

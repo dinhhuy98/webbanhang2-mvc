@@ -37,7 +37,9 @@
 <!-- End Header -->
   
 <!--Content-->
+<div id="content">
 <?php require_once("./mvc/views/pages/".$data['page'].".php"); ?>   
+</div>
 <!--End Content-->
   <!-- Footer -->
 <?php require_once("./mvc/views/blocks/footer.php"); ?>

@@ -20,17 +20,6 @@ class Home extends Controller{
 								"category"=>$category]);
 	}
 
-	function SayHi($a, $b){
-	
-		$tong =  $this->sinhVienModel->tong($a,$b);
-		$ds = json_decode($this->sinhVienModel->getSV());
-		$this->view("master1",["tong"=>$tong,"color"=>"red",
-							"page"=>"news", "ds"=>$ds]);
-	}
-	function Show($a, $b){
-		echo $a+$b;
-		$this->view("master1",[]);
-	}
 }
 
  ?>

@@ -48,5 +48,21 @@ class ProductModel extends DB{
 		$data = mysqli_query($this->conn,$sql);
 		return mysqli_num_rows($data);
 	}
+
+	public function getProductsByName($name, $start, $limit){
+		$sql = "SELECT * FROM item WHERE name LIKE '%$name%' ORDER BY id LIMIT $start,$limit";
+		$data = mysqli_query($this->conn,$sql);
+		$arr = array();
+		while($row = mysqli_fetch_assoc($data)){
+			$arr[] = $row;
+		}
+		return json_encode($arr);
+	}
+
+	public function countProductByName($name){
+		$sql = "SELECT * FROM item WHERE name LIKE '%$name%' ORDER BY id";
+		$data = mysqli_query($this->conn,$sql);
+		return mysqli_num_rows($data);
+	}
 }
  ?>
