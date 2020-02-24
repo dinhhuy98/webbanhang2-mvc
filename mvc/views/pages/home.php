@@ -24,11 +24,11 @@
               <div class="px-4">
                <h3 style="width:300px;height:40px;"><a href="product/productDetail/<?php echo $item->id; ?>" style="-webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow: hidden; display: -webkit-box;"><?php echo $item->name;  ?></a></h3>
                 <div class="mb-3">
-                  <span class="meta-icons mr-3 text-warning "><?php echo number_format($item->price,0," ","."); ?> VND</span>
+                  <span class="meta-icons mr-3 text-warning font-weight-bold"><?php echo number_format($item->price,0," ","."); ?> VND</span>
                   
                 </div>
                 <div>
-                  <a href="#" class="btn btn-black mr-1 rounded-0">Thêm giỏ hàng</a>
+                  <button class="btn btn-black mr-1 rounded-0 quick-view" id="<?php echo $item->id; ?>">Thêm giỏ hàng</button>
                   <a href="product/productDetail/<?php echo $item->id; ?>" class="btn btn-black btn-outline-black ml-1 rounded-0">Xem chi tiết</a>
                 </div>
               </div>
@@ -88,12 +88,12 @@
               <div class="px-4">
                 <h3 style="width:300px;height:40px;"><a href="product/productDetail/<?php echo $item->id; ?>" style="-webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow: hidden; display: -webkit-box;"><?php echo $item->name;  ?></a></h3>
                 <div class="mb-3">
-                  <span class="meta-icons mr-3 text-warning "><?php echo number_format($item->price,0," ","."); ?> VND</span>
+                  <span class="meta-icons mr-3 text-warning font-weight-bold "><?php echo number_format($item->price,0," ","."); ?> VND</span>
                   
                 </div>
                 <div>
-                  <a href="#" class="btn btn-black mr-1 rounded-0">Thêm giỏ hàng</a>
-                  <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">Xem chi tiết</a>
+                  <button class="btn btn-black mr-1 rounded-0 quick-view" id="<?php echo $item->id; ?>">Thêm giỏ hàng</button>
+                  <a href="product/productDetail/<?php echo $item->id; ?>" class="btn btn-black btn-outline-black ml-1 rounded-0">Xem chi tiết</a>
                 </div>
               </div>
             </div>
@@ -137,12 +137,12 @@
               <div class="px-4">
                <h3 style="width:300px;height:40px;"><a href="product/productDetail/<?php echo $item->id; ?>" style="-webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow: hidden; display: -webkit-box;"><?php echo $item->name;  ?></a></h3>
                 <div class="mb-3">
-                  <span class="meta-icons mr-3 text-warning "><?php echo number_format($item->price,0," ","."); ?> VND</span>
+                  <span class="meta-icons mr-3 text-warning font-weight-bold "><?php echo number_format($item->price,0," ","."); ?> VND</span>
                   
                 </div>
                 <div>
-                  <a href="#" class="btn btn-black mr-1 rounded-0">Thêm giỏ hàng</a>
-                  <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">Xem chi tiết</a>
+                  <button href="#" class="btn btn-black mr-1 rounded-0 quick-view" id="<?php echo $item->id; ?>">Thêm giỏ hàng</button>
+                  <a href="product/productDetail/<?php echo $item->id; ?>" class="btn btn-black btn-outline-black ml-1 rounded-0">Xem chi tiết</a>
                 </div>
               </div>
             </div>

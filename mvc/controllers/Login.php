@@ -10,11 +10,9 @@ class Login extends Controller{
 	}
 
 	public function checkLogin($username,$password){
-		$arrUser = json_decode($this->userModel->getUserByName($username));
-		foreach ($arrUser as $user) {
+		$user = json_decode($this->userModel->getUserByName($username));
 			if(password_verify($password,$user->password))
 				return $user;
-		}
 		return null;
 	}
 	public function login(){
@@ -34,6 +32,10 @@ class Login extends Controller{
 			echo "1";
 		}
 	}
+	}
+
+	public function kkk(){
+		$this->userModel->hhh();
 	}
 
 }

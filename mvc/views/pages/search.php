@@ -24,7 +24,7 @@
                   
                 </div>
                 <div>
-                  <a href="#" class="btn btn-black mr-1 rounded-0">Thêm giỏ hàng</a>
+                  <button class="btn btn-black mr-1 rounded-0 quick-view" id="<?php echo $item->id; ?>">Thêm giỏ hàng</button>
                   <a href="product/productDetail/<?php echo $item->id; ?>" class="btn btn-black btn-outline-black ml-1 rounded-0">Xem chi tiết</a>
                 </div>
               </div>

@@ -16,9 +16,15 @@ class Product extends Controller{
 	public function productDetail($id){
 		$category = $this->categoryModel->loadCategory();
 		$item = json_decode($this->productModel->getProductById($id));
+		$arrSize = json_decode($this->productModel->getSizeOfProduct($id));
+		$arrColor = json_decode($this->productModel->getColorOfProduct($id));
 		$this->view("master1",["page"=>"product-detail",'item'=>$item,
-								"category"=>$category]);
+								"category"=>$category,
+								"arrSize"=>$arrSize, 
+								"arrColor"=>$arrColor]);
 	}
+
+
 
 	public function category($cat){
 		$page=1;

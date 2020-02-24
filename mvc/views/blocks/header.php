@@ -30,7 +30,7 @@
       <div class="site-mobile-menu-body"></div>
     </div>
    
-    <div class="top-bar py-3 bg-light" id="home-section">
+    <div class="top-bar py-1 bg-light" id="home-section">
       <div class="container">
         <div class="row align-items-center">
          
@@ -102,11 +102,12 @@
                 }
                 else{
                ?>
-               <li><a href="#" class="nav-link btnLogin1"><span class="icon-user mr-2" style="position: relative; top: 2px;"></span><span class="d-none d-lg-inline-block text-black"></span>Đăng nhập</a></li>
+               <li><a href="#" class="nav-link btnLogin1" ><span class="icon-user mr-2" style="position: relative; top: 2px;"></span><span class="d-none d-lg-inline-block text-black"></span>Đăng nhập</a></li>
                <?php 
                 }
                 ?>
-             <li><a href="#" class="nav-link"><span class="icon-shopping-cart mr-2 cart" style="position: relative; top: 2px;font-size:20px;" data-count="0"></span><span class="d-none d-lg-inline-block text-black"></span></a></li>
+             <li><a href="cart" class="nav-link"><span class="icon-shopping-cart mr-2 cart" style="position: relative; top: 2px;font-size:20px;" data-count="<?php 
+             echo count($_SESSION['cart']); ?>"></span><span class="d-none d-lg-inline-block text-black"></span></a></li>
               </ul>
 
             </nav>
@@ -116,7 +117,7 @@
         </div>
       </div>
     </header>
-    <div id="loginform">
+    <div id="modal">
   </div>
     </div>
- 
+

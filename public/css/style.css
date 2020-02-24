@@ -1829,7 +1829,7 @@ h1, h2, h3, h4, h5,
   text-align:center;
   min-width: 1em;
 }
-#loginform{
+#modal{
   display: none;
   position:fixed;
   z-index:5000;
@@ -1858,4 +1858,74 @@ h1, h2, h3, h4, h5,
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+.cart-notify{
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+.custom-radios input[type="radio"] {
+  display: none;
+}
+.custom-radios input[type="radio"] + label {
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.custom-radios input[type="radio"] + label span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 44px;
+}
+.custom-radios input[type="radio"] + label span i {
+  opacity: 0;
+  transition: all .3s ease;
+}
+.custom-radios input[type="radio"]#color-white + label span {
+  background-color: white;
+}
+.custom-radios input[type="radio"]#color-black + label span {
+  background-color: black;
+}
+.custom-radios input[type="radio"]#color-blue + label span {
+  background-color: blue;
+}
+.custom-radios input[type="radio"]#color-green + label span {
+  background-color: green;
+}
+
+.custom-radios input[type="radio"]#color-yellow + label span {
+  background-color: yellow;
+}
+
+.custom-radios input[type="radio"]#color-red + label span {
+  background-color: red;
+}
+
+.custom-radios input[name="size"][type="radio"] + label span {
+  border-color: black;
+}
+
+.custom-radios input[type="radio"]:checked + label span i {
+  opacity: 1;
+  color:white;
+  text-shadow: 0 0 5px black;
+}
+
+.custom-radios input[type="radio"][name="size"]:checked + label span i {
+  opacity: 1;
+  color:black;
 }

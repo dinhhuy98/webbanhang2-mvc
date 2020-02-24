@@ -3,18 +3,16 @@
   $arrColor = $data['arrColor'];
   $arrSize = $data['arrSize'];
   ?>
-      <div class="container mt-5 pt-5">  
-        <div class="bg-light py-4 mb-4">
-          <div class="row mx-4 my-4 product-item-2 align-items-start">
+<div class="container mt-3 pt-2 justify-content-center">
+
+        <div class="bg-light py-2 mb-4 w-75 ml-auto mr-auto">
+          <span class="close pr-4">&times;</span>  
+          <div class="row mx-4 my-4 product-item-2 align-items-center  justify-content-center">
             <div class="col-md-6 mb-5 mb-md-0">
               <img src="./public/images/<?php echo $item->image; ?>" alt="Image" class="img-fluid">
             </div>
-           
-            <div class="col-md-5 ml-auto product-title-wrap">
-              <span class="number">STYLE</span>
+            <div class="col-md-6 ml-auto product-title-wrap">
               <h3 class="text-black mb-4 font-weight-bold"><?php echo $item->name; ?></h3>
-              <p class="mb-4">Et tempora id nostrum saepe amet doloribus deserunt totam officiis cupiditate asperiores quasi accusantium voluptatum dolorem quae sapiente voluptatem ratione odio iure blanditiis earum fuga molestiae alias dicta perferendis inventore!</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus soluta assumenda sed optio, error at?</p>
               
               <div class="mb-4"> 
                 <h3 class="text-black font-weight-bold h5">Giá:</h3>
@@ -55,7 +53,7 @@
               
               </div>
               <p>
-               <button class="btn btn-black btn-outline-black rounded-0 d-block mb-2 mb-lg-0 d-lg-inline-block add-cart" id="<?php echo $item->id; ?>">Thêm giỏ hàng</button>
+                <button class="btn btn-black btn-outline-black rounded-0 d-block mb-2 mb-lg-0 d-lg-inline-block add-cart" id="<?php echo $item->id; ?>">Thêm giỏ hàng</button>
                 <a href="Cart" class="btn btn-black rounded-0 d-block mb-2 mb-lg-0 d-lg-inline-block">Truy cập giỏ hàng</a>
               </p>
               <p class="text-primary font-weight-bold" id="cart-alert"></p>
@@ -64,4 +62,3 @@
         </div>
       </div>
 
-  

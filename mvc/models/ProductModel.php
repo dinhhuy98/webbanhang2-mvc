@@ -43,6 +43,12 @@ class ProductModel extends DB{
 		return mysqli_num_rows($data);
 	}
 
+	public function getStockId($id_item,$id_color,$id_size){
+		$sql = "SELECT id FROM stock WHERE id_item=$id_item AND id_color=$id_color AND id_size=$id_size";
+		$data = mysqli_query($this->conn,$sql);
+		return json_encode(mysqli_fetch_assoc($data));
+	}
+
 	public function countProductByTag($tag_id){
 		$sql = "SELECT * FROM item_tag,item WHERE item_tag.item_id=item.id AND item_tag.tag_id=$tag_id";
 		$data = mysqli_query($this->conn,$sql);
@@ -64,5 +70,27 @@ class ProductModel extends DB{
 		$data = mysqli_query($this->conn,$sql);
 		return mysqli_num_rows($data);
 	}
+
+	public function getColorOfProduct($id){
+		$sql = "SELECT DISTINCT color.id,color.name FROM stock,color WHERE stock.id_item = $id AND stock.id_color=color.id;";
+		$data = mysqli_query($this->conn,$sql);
+		$arr = array();
+		while($row = mysqli_fetch_assoc($data)){
+			$arr[] = $row;
+		}
+		return json_encode($arr);
+	}
+
+	public function getSizeOfProduct($id){
+		$sql = "SELECT DISTINCT size.id,size.name FROM stock,size WHERE stock.id_item = $id AND stock.id_size=size.id;";
+		$data = mysqli_query($this->conn,$sql);
+		$arr = array();
+		while($row = mysqli_fetch_assoc($data)){
+			$arr[] = $row;
+		}
+		return json_encode($arr);
+	}
+
+
 }
  ?>

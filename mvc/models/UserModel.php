@@ -4,11 +4,7 @@ class UserModel extends DB{
 	public function getUserByName($username){
 		$sql = "SELECT * FROM users WHERE username='$username'";
 		$data = mysqli_query($this->conn,$sql);
-		$arr = array();
-		while($row = mysqli_fetch_assoc($data)){
-			$arr[] = $row;
-		}
-		return json_encode($arr);
+		return json_encode(mysqli_fetch_assoc($data));
 	}
 
 	public function addUser($hoten,$email,$sdt,$username,$password){
@@ -85,6 +81,28 @@ class UserModel extends DB{
 			}
 		}
 		return $result;
+	}
+
+	public function hhh(){
+		for($p=3;$p<=25;$p++){
+			$imin = rand(1,6);
+			$jmin = rand(1,6);
+			$imax = rand($imin,6);
+			$jmax = rand($jmin,6);
+
+
+		for($i=$imin;$i<=$imax;$i++){
+			for($j=$jmin;$j<=$jmax;$j++){
+				$n = rand(1,10);
+				$sql = "INSERT INTO stock (id_item,id_color,id_size,number) VALUES ($p,$i,$j,$n);";
+				//mysqli_query($this->conn,$sql);
+				echo $sql;
+				$data = mysqli_query($this->conn,$sql);
+				
+			}
+		}
+	}
+
 	}
 
 }

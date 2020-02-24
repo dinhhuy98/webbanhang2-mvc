@@ -257,20 +257,36 @@ jQuery(document).ready(function($) {
   	});
   });
 
-   $('.btnLogin1').click(function() {
+  $('.btnLogin1').click(function() {
    		$.get("./Login",{},function(data){
-   			$('#loginform').html(data);
+   			$('#modal').html(data);
    		});
-  		$('#loginform').css({
+  		$('#modal').css({
   			display: 'block'
   		});
   });
+$('.img-cart').click(function() {
+		var _src = $(this).attr('src');
+   		$.post("./Ajax/showImage",{src:_src},function(data){
+   			$('#modal').html(data);
+   		});
+  		$('#modal').css({
+  			display: 'block'
+  		});
+  });
+
   $(document).on('click','.close',function(){
-  	$('#loginform').css({
+  	$('#modal').css({
   		display: 'none'
   	});
   });
-  $("#hoten").blur(function() {
+
+  $(document).on('click','.close-notify',function(){
+  	$('#modal').css({
+  		display: 'none'
+  	});
+  });
+  $("#hoten").blur(function checkHoten() {
  		var _hoten = $(this).val();
  		$.post('Ajax/checkFullName', {hoten: _hoten}, function(data) {
  			if(data=='1')
@@ -292,17 +308,21 @@ jQuery(document).ready(function($) {
  		});
   });
 
-  $("#phone").blur(function() {
- 		var _phone = $(this).val();
- 		$.post('Ajax/checkPhoneNumber', {phone: _phone}, function(data) {
- 			if(data=='1')
- 				$('#phone-error').html('Vui lòng nhập số điện thoại');
- 			else if(data=='2')
- 				$('#phone-error').html('Số điện thoại không hợp lệ');
- 			else
- 				$('#phone-error').html('');
+ 
 
- 		});
+  $("#phone").blur(function(){
+    var _phone = $(this).val();
+    $.post('Ajax/checkPhoneNumber', {phone: _phone}, function(data) {
+      if(data=='1')
+        $('#phone-error').html('Vui lòng nhập số điện thoại');
+      else if(data=='2')
+        $('#phone-error').html('Số điện thoại không hợp lệ');
+      else{
+        $('#phone-error').html('');
+        result=true;
+      }
+
+    });
   });
 
   $("#username").blur(function() {
@@ -329,19 +349,205 @@ jQuery(document).ready(function($) {
  		});
   });
 
+  $(document).on('click','.add-item',function(){
+      var s = $(this).parent().find("input[type='text']");
+      var k = parseInt($(s).attr('value'))+1;
+      var _id = $(this).parent().attr('id');
+      $.post('Ajax/changeItemQuantity',{id:_id,number:k},function(data){
+        if(data!='0'){
+          $(s).attr({
+            'value':k
+          });
+          $.post('Ajax/total',{id:_id},function(data){
+             $(s).parent().next().html(data);
+          });
+
+          $.post('Ajax/totalAll',{},function(data){
+             $('#total-all').html(data);
+          });
+
+        }
+      });
+
+  });
+
+  $(document).on('click','.sub-item',function(){
+      var s = $(this).parent().find("input[type='text']");
+      var k = parseInt($(s).attr('value'))-1;
+      var _id = $(this).parent().attr('id');
+      $.post('Ajax/changeItemQuantity',{id:_id,number:k},function(data){
+        if(data!='0'){
+          $(s).attr({
+            'value':k
+          });
+          $.post('Ajax/total',{id:_id},function(data){
+             $(s).parent().next().html(data);
+          });
+
+          $.post('Ajax/totalAll',{},function(data){
+             $('#total-all').html(data);
+          });
+
+        }
+      });
+
+  });
+
+  $('.delete-cart').click(function(){
+    var _id = $(this).parent().prev().prev().attr('id');
+    var $this = $(this);
+    $.post('Ajax/deleteItem', {id: _id}, function(data) {
+      if(data=='1'){
+        $($this).parent().parent().remove();
+        $.post('Ajax/totalAll',{},function(data){
+             $('#total-all').html(data);
+          });
+
+        $.post('Ajax/countItem', {}, function(data) {
+      $('.icon-shopping-cart').attr({
+        'data-count': data
+      });
+    });
+      }
+    });
+  })
+
+
 
   $(document).on('click','input[name="btnLogin"]',function(){
   		var _username = $("input[name='username']").val();
   		var _password = $("input[name='password']").val();
+      //alert(_username+_password);
   		$.post("./Login/login",{username:_username,password:_password,btnLogin:1},function(data){
-  			if(data=='1'){
+        if(data=='1'){
   				window.location.href="http://localhost:8080/webbanhang2";
   			}
-  			else
+  			else{
   				$('#error').css({
   					display: 'inline'
   				});
+        }
   		});
   });
 
+  $(document).on('click','.add-cart',function(){
+  	var _id = $(this).attr("id");
+    var color = $('input[type="radio"][name="color"]:checked').attr('value');
+    var size = $('input[type="radio"][name="size"]:checked').attr('value');
+    if(size==undefined || color==undefined)
+      $('#cart-alert').html("Vui lòng chọn màu và size!");
+    else{
+  	  $.post('Ajax/addCart', {id_item: _id, id_color:color, id_size:size}, function(data) {
+        if(data=='1' || data=='2'){
+          $('#cart-alert').html("Sản phẩm đã được thêm vào giỏ hàng!");
+  		  }
+  	  });
+  	  $.post('Ajax/countItem', {}, function(data) {
+  		  $('.icon-shopping-cart').attr({
+  			 'data-count': data
+  		  });
+  	   });
+    }
+  });
+
+  $('#province').change(function() {
+    var _id = $('#province option:selected').attr('value');
+    $.post('Ajax/loadDistrictByProvinceId',{id:_id},function(data){
+        $('#district').html(data);
+    });
+  });
+
+    $('#district').change(function() {
+    var _id = $('#district option:selected').attr('value');
+    $.post('Ajax/loadWardByDistrictId',{id:_id},function(data){
+        $('#ward').html(data);
+    });
+  });
+
+    $("#order-confirm").click(function checkValidateAddress(){
+      var _id_province = $('#province option:selected').attr('value');
+      var _id_district = $('#district option:selected').attr('value');
+      var _id_ward = $('#ward option:selected').attr('value');
+      var _address=$.trim($('#address').val());
+      var _hoten = $.trim($('#hoten').val());
+      var _phone = $.trim($('#phone').val());
+      var check=0;
+      $.ajax({
+        url: 'Ajax/checkPhoneNumber',
+        type: 'POST',
+        async:false,
+        data: {phone:_phone},
+      })
+      .done(function(data) {
+          if(data=='2'||data=='1'){
+            check=1;
+            $('#phone').addClass('border-danger');
+          }
+          else
+              $('#phone').removeClass('border-danger');
+      });
+
+       $.ajax({
+        url: 'Ajax/checkFullName',
+        type: 'POST',
+        async:false,
+        data: {hoten:_hoten},
+      })
+      .done(function(data) {
+          if(data=='1'){
+            check=1;
+            $('#hoten').addClass('border-danger');
+          }
+          else
+              $('#hoten').removeClass('border-danger');
+      });
+
+
+      if(_id_province=='null'){
+        $('#province').addClass('border-danger');
+        check=1;
+      }
+      else
+        $('#province').removeClass('border-danger');
+      if(_id_district=='null'){
+        $('#district').addClass('border-danger');
+        check=1;
+      }
+      else
+        $('#district').removeClass('border-danger');
+      if(_id_ward=='null'){
+        $('#ward').addClass('border-danger');
+        check=1;
+      }
+      else
+        $('#ward').removeClass('border-danger');
+      if(_address==''){
+        $('#address').addClass('border-danger');
+        check=1;
+      }
+      else
+        $('#address').removeClass('border-danger');
+      
+      if(check==1){
+        $('#order-error').html("Vui lòng điền đầy đủ thông tin!");
+        return false;
+      }
+      else{
+        $('#order-error').html(" ");
+        return true;
+      }
+    });
+
+    $(".quick-view").click(function(){
+    var _id = $(this).attr("id");
+        $.post("./Ajax/quickViewProduct",{id:_id},function(data){
+          $('#modal').html(data);
+          $('#modal').css({
+            display: 'block'
+          });
+        });
+        
+    });
+
 });
+
